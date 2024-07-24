@@ -1,38 +1,35 @@
 import React, { Component } from 'react';
 import './App.css';
+import Tiptap from './Tiptap/Tiptap.tsx';
 
 class App extends Component {
   state = {
     isLoading: true,
-    coffeeShops: []
+    playerCharacters: [],
+    user: [],
   };
 
   async componentDidMount() {
-    const response = await fetch('/api/coffeeshops');
+    const response = await fetch('/api/playercharacters');
     const body = await response.json();
-    this.setState({coffeeShops: body._embedded.coffeeshops, isLoading: false});
+    this.setState({playerCharacters: body._embedded.playercharacters, isLoading: false});
   }
 
   render() {
-    const {coffeeShops, isLoading} = this.state;
+    const {playerCharacters, isLoading} = this.state;
 
     if (isLoading) {
       return <p>Loading...</p>;
     }
 
     return (
-      <div className="App">
-        <header className="App-header">
           <div className="App-intro">
-            <h2>Coffee Shop List</h2>
-            {coffeeShops.map(coffeeShop =>
-              <div key={coffeeShop.id}>
-                {coffeeShop.name} - {coffeeShop.address}
-              </div>
-            )}
+            <h2>Data Example</h2>
+            <div> {playerCharacters[0].text} </div>
+            <div className="characterScreen">
+                <Tiptap />
+            </div>
           </div>
-        </header>
-      </div>
     );
   }
 }
