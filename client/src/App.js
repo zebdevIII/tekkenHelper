@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Tiptap from './Tiptap/Tiptap.tsx';
+import playerCharacterButton from "./playerCharacterButton";
 
 class App extends Component {
   state = {
@@ -16,22 +17,34 @@ class App extends Component {
   }
 
   render() {
+  /*
     const {playerCharacters, isLoading} = this.state;
 
     if (isLoading) {
       return <p>Loading...</p>;
+      <div>
+          <h1>Player Character </h1>
+            {playerCharacterButton()}
+        </div>
     }
-
+    */
+    var characterButtons = loadCharacters();
     return (
-          <div className="App-intro">
-            <h2>Data Example</h2>
-            <div> {playerCharacters[0].text} </div>
-            <div className="characterScreen">
-                <Tiptap />
-            </div>
-          </div>
+      <div>
+        {characterButtons}
+      </div>
     );
   }
+}
+
+function loadCharacters(){
+  var characterButtons = [];
+  for (let i = 1;i<35;i++) {
+    var iconLocation = "characterIcons/" + i + ".png";
+    characterButtons.push(<img className="icon" src={iconLocation}  alt={i}/>)
+    characterButtons.push(<playerCharacterButton />)
+  }
+  return characterButtons;
 }
 
 export default App;
