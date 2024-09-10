@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Tiptap from './Tiptap/Tiptap.tsx';
-import playerCharacterButton from "./playerCharacterButton";
+import PlayerCharacterButton from "./playerCharacterButton";
 
 class App extends Component {
   state = {
@@ -21,7 +21,7 @@ class App extends Component {
     const {playerCharacters, isLoading} = this.state;
 
     if (isLoading) {
-      return <p>Loading...</p>;
+      return <p>Loading...</p>;ls
       <div>
           <h1>Player Character </h1>
             {playerCharacterButton()}
@@ -40,9 +40,9 @@ class App extends Component {
 function loadCharacters(){
   var characterButtons = [];
   for (let i = 1;i<35;i++) {
-    var iconLocation = "characterIcons/" + i + ".png";
-    characterButtons.push(<img className="icon" src={iconLocation}  alt={i}/>)
-    characterButtons.push(<playerCharacterButton />)
+    var iconPath = "characterIcons/" + i + ".png";
+    characterButtons.push(<img className="icon" src={iconPath}  alt={i}/>)
+    characterButtons.push(<PlayerCharacterButton />)
   }
   return characterButtons;
 }

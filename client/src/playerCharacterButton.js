@@ -1,5 +1,5 @@
 
-export default function playerCharacterButton(){
+export default function PlayerCharacterButton(){
     return (
         <button>
             I'm a button

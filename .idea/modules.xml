@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/tekkenHelper.iml" filepath="$PROJECT_DIR$/.idea/tekkenHelper.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tekkennotes/tekkennotes.iml" filepath="$PROJECT_DIR$/tekkennotes/tekkennotes.iml" />
     </modules>
   </component>
 </project>
