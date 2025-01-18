@@ -1,3 +1,5 @@
 import React, { Component } from 'react';
 
-fun
+export function getPlayerCharacter(userId) {
+    return fetch('http://localhost:8080/player/character')
+}

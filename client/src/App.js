@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Tiptap from './Tiptap/Tiptap.tsx';
 import PlayerCharacterButton from "./playerCharacterButton";
+import {getPlayerCharacter} from "./Services/player-character-service";
 
 class App extends Component {
   state = {
@@ -17,21 +18,15 @@ class App extends Component {
   }
 
   render() {
-  /*
-    const {playerCharacters, isLoading} = this.state;
 
-    if (isLoading) {
-      return <p>Loading...</p>;ls
-      <div>
-          <h1>Player Character </h1>
-            {playerCharacterButton()}
-        </div>
-    }
-    */
-    var characterButtons = loadCharacters();
+    //require('dotenv').config()
+    const characterButtons = loadCharacters();
     return (
       <div>
-        {characterButtons}
+      <button
+          onClick={onPress}
+          title="Get Values"
+      />
       </div>
     );
   }
@@ -45,6 +40,11 @@ function loadCharacters(){
     characterButtons.push(<PlayerCharacterButton />)
   }
   return characterButtons;
+}
+
+function onPress(){
+  alert("alert working")
+  getPlayerCharacter(1);
 }
 
 export default App;
