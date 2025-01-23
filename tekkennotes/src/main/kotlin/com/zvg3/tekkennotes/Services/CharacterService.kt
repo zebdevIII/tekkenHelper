@@ -1,5 +1,5 @@
 package com.zvg3.tekkennotes.Services
-import com.zvg3.tekkennotes.DataModels.playerCharacter
+import com.zvg3.tekkennotes.DataModels.PlayerCharacter
 import org.springframework.beans.factory.annotation.Autowired
 import com.zvg3.tekkennotes.Repositories.PlayerCharacterRepository
 import org.springframework.stereotype.Service
@@ -11,11 +11,11 @@ class CharacterService(
     @Autowired
     val playerCharacterRepository : PlayerCharacterRepository
     ){
-        fun getAllPlayerCharacters(): List<playerCharacter> {
-           return playerCharacterRepository.findAll() as ArrayList<playerCharacter>;
+        fun getAllPlayerCharacters(): List<PlayerCharacter> {
+           return playerCharacterRepository.findAll() as ArrayList<PlayerCharacter>;
         }
 
-        fun getPlayerCharacterByID(userID: Long): Optional<playerCharacter> {
+        fun getPlayerCharacterByID(userID: Long): Optional<PlayerCharacter> {
             return playerCharacterRepository.findById(userID);
         }
 

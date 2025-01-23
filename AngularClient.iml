@@ -7,5 +7,8 @@
       <excludeFolder url="file://$MODULE_DIR$/AngularClient/tmp" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="quill" level="application" />
+    <orderEntry type="library" name="quill.snow" level="application" />
+    <orderEntry type="library" name="jquery-3.1.1" level="application" />
   </component>
 </module>

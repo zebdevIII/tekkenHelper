@@ -11,7 +11,6 @@ class TekkennotesApplication {
 	@Bean
 	fun run() = ApplicationRunner {
 	}
-
 }
 
 fun main(args: Array<String>) {
