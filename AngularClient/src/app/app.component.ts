@@ -3,11 +3,15 @@ import { RouterOutlet } from '@angular/router';
 import {MatButtonModule} from '@angular/material/button';
 import {CharacterService} from "./Services/character.service"
 import {HttpClient, provideHttpClient} from '@angular/common/http';
+import { Editor } from '@tiptap/core';
+import StarterKit from '@tiptap/starter-kit';
+import { TiptapEditorDirective } from 'ngx-tiptap';
+import {FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, MatButtonModule],
+  imports: [RouterOutlet, MatButtonModule, TiptapEditorDirective, FormsModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -22,6 +26,16 @@ export class AppComponent{
 
   ngOnInit(){
     this.cs = new CharacterService(this.http);
+  }
+
+  editor = new Editor({
+    extensions: [StarterKit],
+  });
+
+  value = '<p>Hello, Tiptap!</p>'; // can be HTML or JSON, see https://www.tiptap.dev/api/editor#content
+
+  ngOnDestroy(): void {
+    this.editor.destroy();
   }
 
   public sendText(){
