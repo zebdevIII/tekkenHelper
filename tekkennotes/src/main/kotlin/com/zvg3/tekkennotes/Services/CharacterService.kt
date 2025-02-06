@@ -19,4 +19,8 @@ class CharacterService(
             return playerCharacterRepository.findById(userID);
         }
 
+        fun getPlayerCharacterByCharId(charID: Long): PlayerCharacter? {
+            return playerCharacterRepository.findByCharId(charID);
+        }
+
 }

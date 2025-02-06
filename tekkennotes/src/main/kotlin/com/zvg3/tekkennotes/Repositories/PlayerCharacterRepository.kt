@@ -6,6 +6,8 @@ import org.springframework.data.repository.CrudRepository
 
 import org.springframework.data.rest.core.annotation.RepositoryRestResource
 
-@RepositoryRestResource(collectionResourceRel = "playercharacters", path = "playercharacters")
-interface PlayerCharacterRepository : CrudRepository<PlayerCharacter, Long> {
+    @RepositoryRestResource(collectionResourceRel = "playercharacters", path = "playercharacters")
+    interface PlayerCharacterRepository : CrudRepository<PlayerCharacter, Long> {
+
+        fun findByCharId(charId: Long): PlayerCharacter?
 }
