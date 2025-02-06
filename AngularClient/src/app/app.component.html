@@ -1,18 +1,21 @@
 <tiptap-editor [editor]="editor" [(ngModel)]="value"></tiptap-editor>
 
+
+
+@for (character of characterList; track character.id){
+  <button class="icon-button" (click)="getText(character.id)">
+    <img
+      class="icon"
+      [src]=character.source
+    />
+  </button>
+}
+
 <div>
   <button
     (click)="sendText()"
   >
     Send
-  </button>
-</div>
-
-<div>
-  <button
-    (click)="getText()"
-  >
-    Receive
   </button>
 </div>
 

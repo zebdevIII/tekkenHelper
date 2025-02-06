@@ -15,8 +15,8 @@ export class CharacterService{
   private errorMessage: any;
   constructor(private http: HttpClient) {}
 
-  getPcData() : Observable<any> {
-      return this.http.get<any>(this.baseURL+'characters');
+  getPcData(characterId: number) : Observable<any> {
+      return this.http.get<any>(this.baseURL+'characters/' + characterId);
   }
 
   postPlayerCharacterNotes(text: string) {
