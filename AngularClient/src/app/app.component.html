@@ -1,23 +1,59 @@
-<tiptap-editor [editor]="editor" [(ngModel)]="value"></tiptap-editor>
+<body>
+  <section class="banner">
+    <div>
+      Banner
+    </div>
+  </section>
+  <h1 class="title">
+    Tekken Helper
+  </h1>
+  <div class="main">
+    <div class="button-row">
+      <div class="button-grouping-left">
+        Your Character
+        <br>
+        @for (character of characterList; track character.id){
+          <button class="icon-button" [title]=character.id (click)="getPcText(character.id)">
+            <img
+              class="icon"
+              [src]="character.source"
+            />
+          </button>
+          <br *ngIf="character.id/9==0">
+        }
+      </div>
+      <div class="button-grouping-right">
+        Opponent Character
+        <br>
+        @for (character of characterList; track character.id){
+          <button class="icon-button" [title]=character.id (click)="getOppText(character.id)">
+            <img
+              class="icon"
+              [src]=character.source
+            />
+          </button>
+          <br *ngIf="character.id/9==0">
+        }
+      </div>
+    </div>
 
+    <div class="editor-container">
+      <div class="editors">
+        {{ characterMap.get(playerCharacter) }}
+        <app-menu [editor]="pcEditor"></app-menu>
+        <div tiptap [editor]="pcEditor" [(ngModel)]="pcText"></div>
+      </div>
+      <div class="editors">
+        {{ characterMap.get(playerCharacter) }} VS {{ characterMap.get(oppCharacter) }}
+        <app-menu [editor]="specificEditor"></app-menu>
+        <div tiptap [editor]="specificEditor" [(ngModel)]="specificText"></div>
+      </div>
+      <div class="editors">
+        {{ characterMap.get(oppCharacter) }}
+        <app-menu [editor]="oppEditor"></app-menu>
+        <div tiptap [editor]="oppEditor" [(ngModel)]="oppText"></div>
+      </div>
+    </div>
+  </div>
 
-
-@for (character of characterList; track character.id){
-  <button class="icon-button" (click)="getText(character.id)">
-    <img
-      class="icon"
-      [src]=character.source
-    />
-  </button>
-}
-
-<div>
-  <button
-    (click)="sendText()"
-  >
-    Send
-  </button>
-</div>
-
-{{incomingText}}
-
+</body>
