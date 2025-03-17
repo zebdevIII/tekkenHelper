@@ -1,4 +1,4 @@
-const characterMap = new Map<number, string>([
+export const characterMap = new Map<number, string>([
   [1, "Kazuya"],
   [2, "Jin"],
   [3, "King"],

@@ -1,15 +1,85 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin-top: 0; font-family: 'Courier New', monospace; }
 
 .icon-button{
   background: none;
-  padding: 0;
+  padding: 4px;
   border: 0;
   cursor: pointer;
+
 }
 
 .icon-button .icon {
   width: 28px;
 }
+
+.button-row{
+  width: 95%;
+  height: 200px;
+  border: 1px solid black;
+  position: static;
+  margin: auto;
+}
+
+.button-grouping-left{
+  width: 500px;
+  float:left; /* add this */
+  border: 1px ;
+}
+
+.button-grouping-right{
+  width: 500px;
+  float:right; /* add this */
+  border: 1px ;
+}
+
+.editor-container{
+  width: 95%;
+  height: 100%;
+  border: 1px solid black;
+  margin: auto;
+  position: relative;
+}
+
+.editors{
+  display: inline-block;
+  width: 400px;
+  height: 400px;
+  margin: 1em;
+  border: 1px solid black;
+}
+
+.options-menu{"
+  mx-auto
+  w-3/4
+  md:w-3/4
+  xl:w-1/2
+  mt-6
+  h-auto
+  border-black border-2
+  rounded-md"
+}
+
+.banner{
+  position:fixed;
+  background-color: darkslategray;
+  width: 100%;
+  opacity: 100%;
+}
+
+.title{
+  position: relative;
+  top:50px;
+  left:0;
+}
+
+.main{
+  position: relative;
+  margin-top: 100px;
+}
+
+
+
+

@@ -3,16 +3,20 @@ import { RouterOutlet } from '@angular/router';
 import {MatButtonModule} from '@angular/material/button';
 import {CharacterService} from "./Services/character.service"
 import {HttpClient, provideHttpClient} from '@angular/common/http';
-import { Editor } from '@tiptap/core';
-import StarterKit from '@tiptap/starter-kit';
-import { TiptapEditorDirective } from 'ngx-tiptap';
 import {FormsModule} from '@angular/forms';
-import {NgForOf, NgOptimizedImage} from '@angular/common';
+import {NgForOf, NgIf, NgOptimizedImage} from '@angular/common';
+import {TiptapEditorDirective} from 'ngx-tiptap';
+import {Editor} from '@tiptap/core';
+import StarterKit from '@tiptap/starter-kit';
+import {Node} from '@tiptap/core';
+import Placeholder from '@tiptap/extension-placeholder';
+import {MenuComponent} from './components/menu/menu.component';
+import {characterMap} from './shared/characterMap'
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, MatButtonModule, TiptapEditorDirective, FormsModule, NgOptimizedImage, NgForOf],
+  imports: [RouterOutlet, MatButtonModule, FormsModule, NgOptimizedImage, NgForOf, NgIf, TiptapEditorDirective, MenuComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -22,6 +26,14 @@ export class AppComponent{
   public incomingText: any | undefined;
   private numOfCharacters: number = 34;
   public characterList = Array();
+  public playerCharacter : number = 0;
+  public oppCharacter: number = 0;
+  protected readonly characterMap = characterMap;
+
+
+  pcText: String  = 'Get Ready for the next battle!';
+  oppText: String = 'Get Ready for the next battle!';
+  specificText: String = "Get Ready for the next battle!"
 
   constructor(private charServ : CharacterService) {
     this.cs = charServ;
@@ -34,18 +46,33 @@ export class AppComponent{
     console.log(this.characterList);
   }
 
+  Node = new Node()
+
+  pcEditor  = new Editor({
+    extensions: [StarterKit, Placeholder],
+    editorProps: {
+      attributes: {
+        class: 'p-2 focus:border-none border-black border-t-2 outline-none',
+        spellcheck: 'false',
+      },
+    },
+  });
+
+  oppEditor = new Editor({
+    extensions: [StarterKit],
+  });
+
+  specificEditor = new Editor({
+    extensions: [StarterKit],
+  });
+
+
+
   ngOnInit(){
     this.cs = new CharacterService(this.http);
   }
 
-  editor = new Editor({
-    extensions: [StarterKit],
-  });
-
-  value : String  = '<p>Hello, Tiptap!</p>'; // can be HTML or JSON, see https://www.tiptap.dev/api/editor#content
-
   ngOnDestroy(): void {
-    this.editor.destroy();
   }
 
   public sendText(){
@@ -54,14 +81,36 @@ export class AppComponent{
     this.cs.postPlayerCharacterNotes(text);
   }
 
-  public getText(characterId: number) {
+  public getPcText(characterId: number) {
     var subscriptionReturn = this.cs.getPcData(characterId).subscribe({
       next: value => {
-        this.incomingText = value;
+        this.pcText = value.text
+        this.playerCharacter = characterId
         }
       }
     );
-    this.value = this.incomingText.text;
     alert('data receieved')
   }
+
+  public getOppText(characterId: number) {
+    var subscriptionReturn = this.cs.getPcData(characterId).subscribe({
+        next: value => {
+          this.oppText = value.text
+          this.oppCharacter = characterId
+        }
+      }
+    );
+    alert('data receieved')
+  }
+
 }
+
+/*
+  <div id="playerEditor">
+      <tiptap-editor [editor]="pcEditor" [(ngModel)]="pcText">
+
+      </tiptap-editor>
+    </div>
+
+
+ */
