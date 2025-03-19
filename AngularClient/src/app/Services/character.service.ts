@@ -15,8 +15,12 @@ export class CharacterService{
   private errorMessage: any;
   constructor(private http: HttpClient) {}
 
-  getPcData(characterId: number) : Observable<any> {
-      return this.http.get<any>(this.baseURL+'characters/' + characterId);
+  public getPcData(characterId: number, isPcData : boolean = true) : Observable<any> {
+      return this.http.get<any>(this.baseURL+'characters/' + characterId+ '?isPcData=' + isPcData);
+  }
+
+  public getOppData(characterId: number, isPcData : boolean = false) : Observable<any> {
+      return this.http.get<any>(this.baseURL+'characters/' + characterId + '?isPcData=' + isPcData);
   }
 
   postPlayerCharacterNotes(text: string) {
