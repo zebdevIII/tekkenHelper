@@ -31,9 +31,9 @@ export class AppComponent{
   protected readonly characterMap = characterMap;
 
 
-  pcText: String  = 'Get Ready for the next battle!';
-  oppText: String = 'Get Ready for the next battle!';
-  specificText: String = "Get Ready for the next battle!"
+  pcText: string  = 'Get Ready for the next battle!';
+  oppText: string = 'Get Ready for the next battle!';
+  specificText: string = "Get Ready for the next battle!"
 
   constructor(private charServ : CharacterService) {
     this.cs = charServ;
@@ -66,8 +66,6 @@ export class AppComponent{
     extensions: [StarterKit],
   });
 
-
-
   ngOnInit(){
     this.cs = new CharacterService(this.http);
   }
@@ -75,10 +73,34 @@ export class AppComponent{
   ngOnDestroy(): void {
   }
 
-  public sendText(){
-    alert('data saved')
-    var text = 'Test String;'
-    this.cs.postPlayerCharacterNotes(text);
+  public saveText(type: string){
+    var text : string = '';
+    switch (type) {
+      case 'player': {
+        text = this.pcText;
+        break;
+      }
+      case 'opp': {
+        text = this.oppText;
+        break;
+      }
+      case 'specific': {
+        text = this.specificText;
+        break;
+      }
+      default:
+        break;
+    }
+
+    if(false){
+      //if authenticated
+    }else{
+      if(this.playerCharacter == 0 || this.oppCharacter == 0){
+        // @ts-ignore
+        localStorage.setItem(characterMap.get(this.playerCharacter) + characterMap.get(this.oppCharacter),text)
+      }
+    }
+
   }
 
   public getPcText(characterId: number) {
@@ -123,18 +145,6 @@ export class AppComponent{
         }
       );
       alert('data receieved')
-
     }
   }
-
 }
-
-/*
-  <div id="playerEditor">
-      <tiptap-editor [editor]="pcEditor" [(ngModel)]="pcText">
-
-      </tiptap-editor>
-    </div>
-
-
- */

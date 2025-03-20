@@ -23,15 +23,8 @@ export class CharacterService{
       return this.http.get<any>(this.baseURL+'characters/' + characterId + '?isPcData=' + isPcData);
   }
 
-  postPlayerCharacterNotes(text: string) {
-    this.http.post<any>(this.baseURL, { title: 'Angular POST Request Example' }).subscribe({
-      next: data => {
-        this.postId = data.id;
-      },
-      error: error => {
-        this.errorMessage = error.message;
-        console.error('There was an error!', error);
-      }
-    });
+  public getSpecificList(characterId: number, isPcData : boolean, otherCharId: number): Observable<any> {
+    return this.http.get<any>(this.baseURL+'characters/' + characterId + '?isPcData=' + isPcData);
   }
+
 }
