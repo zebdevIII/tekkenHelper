@@ -82,25 +82,49 @@ export class AppComponent{
   }
 
   public getPcText(characterId: number) {
-    var subscriptionReturn = this.cs.getPcData(characterId).subscribe({
-      next: value => {
-        this.pcText = value.text
-        this.playerCharacter = characterId
+    if (this.oppCharacter == 0){
+      var subscriptionReturn = this.cs.getPcData(characterId).subscribe({
+          next: value => {
+            this.pcText = value.text
+            this.playerCharacter = characterId
+          }
         }
-      }
-    );
-    alert('data receieved')
+      );
+      alert('data receieved')
+    } else{
+      var subscriptionReturn = this.cs.getPcData(characterId).subscribe({
+          next: value => {
+            this.pcText = value.text
+            this.playerCharacter = characterId
+          }
+        }
+      );
+      alert('data receieved')
+    }
+
   }
 
   public getOppText(characterId: number) {
-    var subscriptionReturn = this.cs.getPcData(characterId).subscribe({
-        next: value => {
-          this.oppText = value.text
-          this.oppCharacter = characterId
+    if(this.playerCharacter == 0) {
+      var subscriptionReturn = this.cs.getOppData(characterId).subscribe({
+          next: value => {
+            this.oppText = value.text
+            this.oppCharacter = characterId
+          }
         }
-      }
-    );
-    alert('data receieved')
+      );
+      alert('data receieved')
+    } else{
+      var subscriptionReturn = this.cs.getOppData(characterId).subscribe({
+          next: value => {
+            this.oppText = value.text
+            this.oppCharacter = characterId
+          }
+        }
+      );
+      alert('data receieved')
+
+    }
   }
 
 }
